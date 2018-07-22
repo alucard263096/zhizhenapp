@@ -1,0 +1,58 @@
+<ion-content>
+    <div >
+        <div class="searchbar flex-row flex-center">
+            <div class="line-height-0">
+              <img class="icon-30 " src="{{uploadpath}}resource/search.png" >
+            </div>
+            <div class="searchbarinput h5">
+              三年高考5年模拟
+            </div>
+        </div>
+        <ion-slides pager loop  >
+            <ion-slide  *ngFor="let item of bannertop" class="line-height-0" >
+              <img  class="banner" src="{{uploadpath}}banner/{{item.pic}}" >
+            </ion-slide>
+          </ion-slides>
+    </div>
+    <div class="white-block flex-row flex-wrap padding-bottom" >
+      <div *ngFor="let item of catlist" class="text-center catitem margin-top" >
+        <div>
+          <img class="icon-40" src="{{uploadpath}}category/{{item.icon}}" />
+        </div>
+        <div class="h6">{{item.name}}</div>
+      </div>
+    </div>
+    <div class="line-height-0" >
+        <img class="fullimg bannermiddle"  src="{{uploadpath}}banner/{{bannermiddle.pic}}" />
+    </div>
+    <div class="white-block padding-20">
+      <div class="flex-row flex-center">
+        <div class="h4 flex-1">今日推荐</div>
+        <div><ion-icon name="arrow-forward" class="h4"></ion-icon></div>
+      </div>
+      <div class="flex-row flex-wrap">
+        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of recommcourselist;let i = index"  >
+            <div>
+                <img src="{{uploadpath}}course/{{item.cover}}" />
+              </div>
+              <div class="margin-top-5 h5 title">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="white-block margin-top-5">
+      <div class="flex-row flex-center  padding-20">
+        <div class="h4 flex-1">精选专题</div>
+        <div><ion-icon name="arrow-forward" class="h4"></ion-icon></div>
+      </div>
+      <ion-scroll class="greatescroll" scrollX="true">
+          <div class="flex-row flex-nowrap" >
+              <div class="greatecourse-item margin-top-10" *ngFor="let item of greatecourselist;let i = index"  >
+                  <div>
+                      <img src="{{uploadpath}}course/{{item.cover}}" />
+                    </div>
+                    <div class="margin-top-5 h5 title">{{item.name}}</div>
+              </div>
+          </div>
+      </ion-scroll>
+    </div>
+</ion-content>

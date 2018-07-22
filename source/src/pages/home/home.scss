@@ -1,0 +1,75 @@
+page-home {
+    .banner{
+        width:px(375);height:px(219);
+    }
+    .searchbar{
+        position: absolute;
+        margin-top:px(30);
+        z-index: 2;
+    }
+    .searchbar img{
+        margin-left:px(7);
+        margin-right:px(7);
+    }
+    .catitem{
+        width:px(75);
+    }
+    .searchbarinput{
+        width: px(250);
+        height: px(30);
+        border-radius: px(15);
+        background:rgba(255,255,255,0.7);
+        color:#84817E;
+        padding-left: px(15);
+        padding-top: px(5);
+    }
+    .bannermiddle{
+        height:px(133)
+    }
+    .course-item{
+        width:  px(355/2);
+        padding-right:px(10);
+        padding-left:0px;
+    }
+    .course-item-2{
+        padding-right:0px;
+        padding-left:px(10);
+    }
+    .course-item img{
+        width: px(167.48);
+        height: px(89.65);
+        border-radius: px(5);
+
+    }
+    
+    .course-item .title{
+        height: px(40);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;  //这里是在第二行有省略号
+        overflow: hidden;
+    }
+    .greatescroll{
+        height: px(170);
+    }
+    .greatecourse-item{
+        padding-left: px(10);
+        padding-right:px(10);
+        width:  px(205);
+    }
+
+    .greatecourse-item  img{
+        width: px(185);
+        height: px(108);
+        border-radius: px(5);
+
+    }
+    .greatecourse-item .title{
+        width:  px(185);
+        max-width:  px(185);
+        height: px(20);
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap
+    }
+}
