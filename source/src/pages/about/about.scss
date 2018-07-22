@@ -1,3 +1,19 @@
 page-about {
-
+    .username{
+        width:px(80);
+        margin-left: px(10);
+        margin-right: px(10);
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+    .searchbar{
+        height: px(27);
+        background: #e5e5e5;
+        border-radius: px(15);
+    }
+    .catscroll{
+        height: px(42);
+        width: px(375);
+    }
 }

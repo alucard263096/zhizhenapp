@@ -1,10 +1,10 @@
 <ion-content>
     <div >
-        <div class="searchbar flex-row flex-center">
-            <div class="line-height-0">
-              <img class="icon-30 " src="{{uploadpath}}resource/search.png" >
+        <div class="searchbar flex-row flex-center margin-left-10">
+            <div  >
+                <ion-icon name="search" class="h3 txt-white"></ion-icon>
             </div>
-            <div class="searchbarinput h5">
+            <div class="searchbarinput h5 margin-left-10">
               三年高考5年模拟
             </div>
         </div>
@@ -54,5 +54,22 @@
               </div>
           </div>
       </ion-scroll>
+    </div>
+    <div class="white-block padding-20  margin-top-5">
+      <div class="flex-row flex-center">
+        <div class="h4 flex-1">最热视频</div>
+        <div><ion-icon name="arrow-forward" class="h4"></ion-icon></div>
+      </div>
+      <div class="flex-row flex-wrap">
+        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of hotcourselist;let i = index"  >
+            <div>
+                <img src="{{uploadpath}}course/{{item.cover}}" />
+              </div>
+              <div class="margin-top-5 h5 title">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center padding-20 margin-top-5 h6 txt-gray">
+      致真教育版权所有
     </div>
 </ion-content>

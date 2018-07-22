@@ -1,11 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
 
+<ion-content>
+  <div class="padding-20 white-block">
+    <div class="margin-top-10 flex-row flex-center margin-left-10 margin-right-10">
+      <div>
+        <img class="icon-30" src="{{uploadpath}}resource/nouser.png" />
+      </div>
+      <div class="h5 username">
+        用户姓名用户姓名用户姓名
+      </div>
+      <div class="searchbar flex-1 h6 txt-gray flex-row flex-center">
+          <div class="txt-gray margin-left-10">
+              <ion-icon name="search" class="h4"></ion-icon>
+          </div>
+          <div class="h6 txt-gray">
+              三年高考5年模拟
+          </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <ion-scroll class="catscroll"  scrollX="true" >
+      <div class="flex-row flex-center flex-nowrap" >
+        <div *ngFor="let item of catlist;let i =index;" class="padding-20 {{item.active=='Y'?'txt-primary':'h5'}}" (click)="catclick(i)">
+          {{item.name}}
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <div>
+      <ion-slides loop (ionSlideDidChange)="slideChanged(e)">
+          <ion-slide  *ngFor="let item of catlist;let i =index;"  style="height:80vh;" >
+            {{item.name}}
+          </ion-slide>
+        </ion-slides>
+  </div>
 </ion-content>

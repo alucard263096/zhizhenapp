@@ -16,6 +16,7 @@ export class HomePage extends AppBase {
   catlist=[];
   recommcourselist=[];
   greatecourselist=[];
+  hotcourselist=[];
   bannermiddle={pic:""};
   constructor(public navCtrl: NavController,public statusBar : StatusBar
     ,public bannerApi:BannerApi, public categoryApi:CategoryApi
@@ -49,6 +50,9 @@ export class HomePage extends AppBase {
     });
     this.courseApi.list({isgreate:"Y"}).then((greatecourselist)=>{
       this.greatecourselist=greatecourselist;
+    });
+    this.courseApi.list({ishot:"Y"}).then((hotcourselist)=>{
+      this.hotcourselist=hotcourselist;
     });
   }
 

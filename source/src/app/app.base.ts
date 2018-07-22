@@ -13,6 +13,7 @@ export class AppBase{
         this.statusBar.styleDefault();
     }
     ionViewDidLoad(){
+        this.setStatusBar();
         this.onMyLoad();
     }
     onMyLoad(){
