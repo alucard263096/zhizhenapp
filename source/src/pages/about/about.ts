@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, App, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AppBase } from '../../app/app.base';
 import { CategoryApi } from '../../providers/category.api';
@@ -16,22 +16,64 @@ export class AboutPage extends AppBase {
   @ViewChild(Slides) slides: Slides;
 
   catlist = [];
-  constructor(public navCtrl: NavController, public statusBar: StatusBar
+  constructor(public navCtrl: NavController,public navParam:NavParams
+    ,public modalCtrl:ModalController , public statusBar: StatusBar
     , public categoryApi: CategoryApi,
     public courseApi: CourseApi) {
-    super(statusBar);
+    super(navCtrl,modalCtrl,statusBar);
+    console.log(navParam);
   }
 
   onMyLoad() {
     this.categoryApi.list({}).then((catlist) => {
-      catlist[0].active = "Y";
+      console.log(AppBase.TabChangeParamCache);
+      var defaultindex=0;
+      if(AppBase.TabChangeParamCache!=null
+      &&AppBase.TabChangeParamCache.tabIndex==1){
+        for(var i=0;i<catlist.length;i++){
+          if(AppBase.TabChangeParamCache.param.cat_id==catlist[i].id){
+            catlist[i].active = "Y";
+            defaultindex=i;
+          }
+        }
+      }else{
+        catlist[defaultindex].active = "Y";
+      }
       this.catlist = catlist;
-      this.loadCatCourseList(this.catlist[0].id);
+      this.loadCatCourseList(this.catlist[defaultindex].id);
+      var slidertry=setInterval(()=>{
+        if(this.slides.length()==this.catlist.length){
+          this.slides.slideTo(defaultindex);
+          AppBase.TabChangeParamCache=null;
+          clearInterval(slidertry);
+        }
+      },1000);
     });
   }
+  onMyShow(){
+    if(AppBase.TabChangeParamCache!=null
+      &&AppBase.TabChangeParamCache.tabIndex==1){
+
+        if(this.catlist.length>0){
+          var defaultindex=0;
+          for(var i=0;i<this.catlist.length;i++){
+            if(AppBase.TabChangeParamCache.param.cat_id==this.catlist[i].id){
+              this.catlist[i].active = "Y";
+              this.catlist[i].courselist=undefined;
+              this.catlist[i].recommcourse=undefined;
+              this.catclick(i);
+              
+              AppBase.TabChangeParamCache=null;
+              break;
+            }
+          }
+        }
+      }
+  }
   catclick(idx) {
+    console.log(idx);
     for (var i = 0; i < this.catlist.length; i++) {
-      this.catlist[i].active = i == idx ? "Y" : "N";
+      //this.catlist[i].active = i == idx ? "Y" : "N";
       if (i == idx) {
         this.catlist[i].active = "Y";
         this.loadCatCourseList(this.catlist[i].id);
@@ -71,8 +113,7 @@ export class AboutPage extends AppBase {
   swipe(e) {
     console.log(e.direction);
   }
-  doRefresh(ref){
-    setTimeout(() => {
+  onPullRefresh(ref){
     for (var i = 0; i < this.catlist.length; i++) {
       if (this.catlist[i].active == "Y") {
         this.catlist[i].courselist=undefined;
@@ -81,6 +122,6 @@ export class AboutPage extends AppBase {
         this.slides.slideTo(i);
         ref.complete();
       }
-    }}, 2000);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ModalController } from 'ionic-angular';
 import {AppBase} from "../../app/app.base";
 import {BannerApi} from "../../providers/banner.api";
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,16 +18,25 @@ export class HomePage extends AppBase {
   greatecourselist=[];
   hotcourselist=[];
   bannermiddle={pic:""};
-  constructor(public navCtrl: NavController,public statusBar : StatusBar
+  constructor(public navCtrl: NavController,public modalCtrl:ModalController 
+    , public statusBar : StatusBar
     ,public bannerApi:BannerApi, public categoryApi:CategoryApi
     , public courseApi:CourseApi
   ) {
-    super(statusBar);
+    super(navCtrl,modalCtrl,statusBar);
   }
   setStatusBar(){
     this.statusBar.styleLightContent();
   }
   onMyLoad(){
+    
+    console.log("modal ctrl");
+    console.log(this.modalCtrl);
+
+    this.modalCtrl=this.modalCtrl;
+    this.navCtrl=this.navCtrl;
+    this.statusBar=this.statusBar;
+
     this.bannerApi.list({}).then((bannerlist)=>{
       var bannertop=[];
         for(var i=0;i<bannerlist.length;i++){
@@ -54,6 +63,9 @@ export class HomePage extends AppBase {
     this.courseApi.list({ishot:"Y"}).then((hotcourselist)=>{
       this.hotcourselist=hotcourselist;
     });
+    
   }
-
+  onPullRefresh(){
+    this.onMyLoad();
+  }
 }

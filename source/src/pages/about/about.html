@@ -5,7 +5,7 @@
           pullingIcon="arrow-dropdown"
           pullingText="下拉加载最新信息"
           refreshingSpinner="circles"
-          refreshingText="刷新中">
+          refreshingText="...">
         </ion-refresher-content>
       </ion-refresher>
 
@@ -37,13 +37,14 @@
     </ion-scroll>
   </div>
   <div class="white-block">
-    <ion-slides loop="false" (ionSlideDidChange)="slideChanged(e)" >
+    <ion-slides loop="false" (ionSlideDidChange)="slideChanged(e)"  >
       <ion-slide *ngFor="let catitem of catlist;" class="bodyslider">
+        
         <ion-scroll scrollY="true" style="height:100%;">
           <div class="white-block margin-top-5">
             <ion-scroll class="greatescroll" scrollX="true">
               <div class="flex-row flex-nowrap">
-                <div class="greatecourse-item margin-top-10" *ngFor="let item of catitem.recommcourse;let i = index">
+                <div class="greatecourse-item margin-top-10" *ngFor="let item of catitem.recommcourse;let i = index"  (click)="openCourse(item.id)">
                   <div>
                     <img src="{{uploadpath}}course/{{item.cover}}" />
                   </div>
@@ -53,7 +54,7 @@
             </ion-scroll>
           </div>
           <div class="margin-top-5" >
-            <div *ngFor="let item of catitem.courselist;" class="padding-20 flex-row flex-center">
+            <div *ngFor="let item of catitem.courselist;" class="padding-20 flex-row flex-center"  (click)="openCourse(item.id)">
               <div class="flex-1 margin-right-10">
                 <div class="coursttitle h5">{{item.name}}</div>
                 <div class="flex-row margin-top-10 flex-bottom">

@@ -1,4 +1,14 @@
 <ion-content>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="下拉加载最新信息"
+          refreshingSpinner="circles"
+          refreshingText="刷新中">
+        </ion-refresher-content>
+      </ion-refresher>
+
     <div >
         <div class="searchbar flex-row flex-center margin-left-10">
             <div  >
@@ -15,7 +25,7 @@
           </ion-slides>
     </div>
     <div class="white-block flex-row flex-wrap padding-bottom" >
-      <div *ngFor="let item of catlist" class="text-center catitem margin-top" >
+      <div *ngFor="let item of catlist" class="text-center catitem margin-top" (click)="changeTab(1,{cat_id:item.id})">
         <div>
           <img class="icon-40" src="{{uploadpath}}category/{{item.icon}}" />
         </div>
@@ -31,7 +41,7 @@
         <div><ion-icon name="arrow-forward" class="h4"></ion-icon></div>
       </div>
       <div class="flex-row flex-wrap">
-        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of recommcourselist;let i = index"  >
+        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of recommcourselist;let i = index"  (click)="openCourse(item.id)">
             <div>
                 <img src="{{uploadpath}}course/{{item.cover}}" />
               </div>
@@ -46,7 +56,7 @@
       </div>
       <ion-scroll class="greatescroll" scrollX="true">
           <div class="flex-row flex-nowrap" >
-              <div class="greatecourse-item margin-top-10" *ngFor="let item of greatecourselist;let i = index"  >
+              <div class="greatecourse-item margin-top-10" *ngFor="let item of greatecourselist;let i = index"   (click)="openCourse(item.id)">
                   <div>
                       <img src="{{uploadpath}}course/{{item.cover}}" />
                     </div>
@@ -61,7 +71,7 @@
         <div><ion-icon name="arrow-forward" class="h4"></ion-icon></div>
       </div>
       <div class="flex-row flex-wrap">
-        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of hotcourselist;let i = index"  >
+        <div class="course-item course-item-{{i%2+1}} margin-top-10" *ngFor="let item of hotcourselist;let i = index"   (click)="openCourse(item.id)">
             <div>
                 <img src="{{uploadpath}}course/{{item.cover}}" />
               </div>
