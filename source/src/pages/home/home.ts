@@ -48,7 +48,7 @@ export class HomePage extends AppBase {
     this.courseApi.list({isrecomm:"Y"}).then((recommcourselist)=>{
       this.recommcourselist=recommcourselist;
     });
-    this.courseApi.list({isgreate:"Y"}).then((greatecourselist)=>{
+    this.courseApi.list({isgreat:"Y"}).then((greatecourselist)=>{
       this.greatecourselist=greatecourselist;
     });
     this.courseApi.list({ishot:"Y"}).then((hotcourselist)=>{

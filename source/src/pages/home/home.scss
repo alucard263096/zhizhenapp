@@ -67,7 +67,8 @@ page-home {
     .greatecourse-item .title{
         width:  px(185);
         max-width:  px(185);
-        height: px(20);
+        height: px(34);
+        display: -webkit-box;
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap

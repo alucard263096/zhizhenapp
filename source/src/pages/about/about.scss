@@ -13,7 +13,57 @@ page-about {
         border-radius: px(15);
     }
     .catscroll{
+
         height: px(42);
         width: px(375);
+    }
+
+    .bodyslider{
+        height: calc( 100vh - 185px );
+    }
+    .bodyslider .swiper-slide{
+        align-items: unset;
+        -webkit-align-items:unset;
+    }
+    .bodyslider .slide-zoom{
+        text-align: left;
+        height: 100%;
+    }
+
+
+    .greatescroll{
+        height: px(170);
+    }
+    .greatecourse-item{
+        padding-left: px(10);
+        padding-right:px(10);
+        width:  px(205);
+    }
+
+    .greatecourse-item  img{
+        width: px(185);
+        height: px(108);
+        border-radius: px(5);
+
+    }
+    .greatecourse-item .title{
+        width:  px(185);
+        max-width:  px(185);
+        height: px(20);
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap
+    }
+    .coursttitle{
+        height: px(38);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;  //这里是在第二行有省略号
+        overflow: hidden;
+    }
+    .coursecover{
+        height: px(68);
+        width:px(110);
+        border-radius: 5px;
     }
 }
