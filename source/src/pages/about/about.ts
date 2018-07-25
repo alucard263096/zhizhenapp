@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, App, ModalController } from 'ionic-angular';
+import { NavController, NavParams, App, ModalController, ViewController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AppBase } from '../../app/app.base';
 import { CategoryApi } from '../../providers/category.api';
@@ -17,10 +17,11 @@ export class AboutPage extends AppBase {
 
   catlist = [];
   constructor(public navCtrl: NavController,public navParam:NavParams
-    ,public modalCtrl:ModalController , public statusBar: StatusBar
+    ,public modalCtrl:ModalController ,public viewCtrl:ViewController,
+     public statusBar: StatusBar
     , public categoryApi: CategoryApi,
     public courseApi: CourseApi) {
-    super(navCtrl,modalCtrl,statusBar);
+    super(navCtrl,modalCtrl,viewCtrl, statusBar);
     console.log(navParam);
   }
 

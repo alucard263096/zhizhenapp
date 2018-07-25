@@ -12,7 +12,9 @@ export class AppUtil {
         s = s.replace(/&#39;/g, "\'");
         s = s.replace(/&quot;/g, "\"");
 
-        s = s.replace("\"/alucard263096/zhizhenapp/upload/", "\""+ApiConfig.getUploadPath());
+        var reg=new RegExp("\"/alucard263096/zhizhenapp/upload/","g"); //创建正则RegExp对象   
+        s= s.replace(reg,"\"http://cmsdev.app-link.org/alucard263096/zhizhenapp/upload/"); 
+        
         return s;
     }
 

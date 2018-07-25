@@ -62,6 +62,45 @@ public list(data, showLoadingModal:boolean=true) {
     }
 
 
+//获取所有的广告
+public info(data, showLoadingModal:boolean=true) {
+  var url = ApiConfig.getApiUrl()+'course/info';
+  var headers = ApiConfig.GetHeader(url, data);
+  let options = new RequestOptions({ headers: headers });
+
+  let body=ApiConfig.ParamUrlencoded(data);
+
+  let loading: Loading=null;
+  if(showLoadingModal){
+    loading = ApiConfig.GetLoadingModal();
+  }
+
+  return this.http.post(url, body, options).toPromise()
+      .then((res) => {
+        if(ApiConfig.DataLoadedHandle('course/info',data,res)){
+            if(showLoadingModal){
+               ApiConfig.DimissLoadingModal();
+            }
+            var retjson=res.json(); 
+            console.log(retjson);
+           return retjson;
+        }else{
+          console.log(res);
+          return Promise.reject(res);
+        }
+      })
+      .catch(err => {
+          
+          console.log(err);
+          if(showLoadingModal){
+             ApiConfig.DimissLoadingModal();
+          }
+          return ApiConfig.ErrorHandle('course/info',data,err);
+      });
+
+  
+}
+
     
 
 }

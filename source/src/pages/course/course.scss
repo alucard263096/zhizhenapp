@@ -1,3 +1,53 @@
 page-course {
 
+    .coursttitle{
+        height: px(38);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;  //这里是在第二行有省略号
+        overflow: hidden;
+    }
+    .coursecover{
+        height: px(68);
+        width:px(110);
+        border-radius: 5px;
+    }
+    .audiocover{
+        width: 54vw;
+        height: 54vw;
+        border-radius: 50%;
+        border:6vw rgba(0,0,0,0.05) solid;
+    }
+    .rotate{
+        -webkit-animation: spin 7s linear infinite;
+        animation: spin 7s linear infinite;
+    }
+    @-webkit-keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+  .video{
+    width: px(375);
+  }
 }

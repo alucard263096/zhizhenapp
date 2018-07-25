@@ -3,7 +3,7 @@ import { AppUtil } from "./app.util";
 import { StatusBar } from '@ionic-native/status-bar';
 import {TabsPage} from "../pages/tabs/tabs";
 import { HomePage } from "../pages/home/home";
-import { NavController, ModalController } from "ionic-angular";
+import { NavController, ModalController, ViewController } from "ionic-angular";
 import { CoursePage } from "../pages/course/course";
 
 export class AppBase{
@@ -12,14 +12,18 @@ export class AppBase{
     public statusBar:StatusBar=null;
     public navCtrl:NavController=null;
     public modalCtrl:ModalController=null;
+    public viewCtrl:ViewController=null;
     public statusBarStyle="X";//{DARK}
     public uploadpath:string=ApiConfig.getUploadPath();
+    public util=AppUtil;
     public constructor(navCtrl:NavController,
         modalCtrl:ModalController, 
+        viewCtrl:ViewController,
         statusBar:StatusBar){
             
         this.navCtrl=navCtrl;
         this.modalCtrl=modalCtrl;
+        this.viewCtrl=viewCtrl;
         this.statusBar=statusBar;
     }
     setStatusBar(){
@@ -58,6 +62,9 @@ export class AppBase{
     }
     back(){
         this.navCtrl.pop();
+    }
+    close(){
+        this.viewCtrl.dismiss();
     }
     nagivate(pagename,param){  
         this.navCtrl.push(pagename,param);

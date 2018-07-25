@@ -4,15 +4,77 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>course</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
+
+<ion-content>
+  <div class="padding-20 flex-row flex-center fixedtop " style="background-color:#fcfcfc"  *ngIf="info.coursetype!='V'">
+        <div (click)="close()">
+          <ion-icon name="arrow-back" class="h4 " ></ion-icon>
+        </div>
+        <div class="nowrap flex-1 h5">
+            
+        </div>
+  </div>
+  <div class="padding-20 flex-row flex-center fixedtop" style="background-color:transparent" *ngIf="info.coursetype=='V'">
+        <div (click)="close()">
+          <ion-icon name="arrow-back" class="h4 txt-white" ></ion-icon>
+        </div>
+        <div class="nowrap flex-1 h5">
+            
+        </div>
+  </div>
+  <div  *ngIf="info.coursetype=='V'">
+      <video class="video" autoplay (pause)="playstatus=0" (playing)="playstatus=1" #audio src="{{uploadpath}}course/{{info.video}}" controls="controls"></video>
+  </div>
+  <div padding >
+    <div style="height:50px;"  *ngIf="info.coursetype!='V'"></div>
+    <div >
+        {{info.name}}
+    </div>
+    <div class="flex-row flex-center margin-top-10">
+      <div class="h6 txt-gray margin-right-10">{{info.refsource}}</div>
+      <div class="h6 txt-gray">{{info.cat_id_name}}</div>
+      <div class="flex-1 h6 txt-gray text-right">{{info.viewcount}}阅读</div>
+    </div>
+    <div class="margin-top-10" *ngIf="info.coursetype=='W'">
+      <div class="htmlcontent" [innerHTML]='info.wenzhang'></div>
+    </div>
+    <div class="margin-top-10" *ngIf="info.coursetype=='W'">
+      <div class="htmlcontent" [innerHTML]='info.wenzhang'></div>
+    </div>
+    <div class="margin-top" *ngIf="info.coursetype=='A'">
+      <div class="text-center" >
+        <img src="{{uploadpath}}course/{{info.audiocover}}" class="audiocover {{playstatus==1?'rotate':''}}" />
+      </div>
+      <div class="text-center margin-top-10">
+        <audio autoplay (pause)="playstatus=0" (playing)="playstatus=1" #audio src="{{uploadpath}}course/{{info.audio}}" controls="controls"></audio>
+      </div>
+    </div>
+  </div>
+  <div class="line-height-0 margin-top-5" *ngIf="banner!=null">
+    <img class="fullimg" src="{{uploadpath}}banner/{{banner.pic}}" />
+  </div>
+
+  <div class="white-block padding-20" *ngIf='info.relacourses!=null&&info.relacourses.length>0'>
+    <div class="flex-row flex-center margin-top-5">
+      <div class="h4 flex-1" >相关推荐</div>
+    </div>
+    <div class="margin-top-5">
+      <div *ngFor="let item of info.relacourses;let i =index;" class="padding-20 flex-row flex-center  {{i+1<info.relacourses.length?'border-bottom':''}}" (click)="openCourse(item.id)">
+        <div class="flex-1 margin-right-10">
+          <div class="coursttitle h5">{{item.name}}</div>
+          <div class="flex-row margin-top-10 flex-bottom">
+            <div class="flex-1 h6 txt-gray">{{item.refsource}}</div>
+            <div class="flex-1 h6 txt-gray text-right">{{item.viewcount}}阅读</div>
+          </div>
+        </div>
+        <div>
+          <img class="coursecover" src="{{uploadpath}}course/{{item.cover}}" />
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </ion-content>

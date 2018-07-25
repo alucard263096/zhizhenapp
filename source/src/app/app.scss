@@ -235,6 +235,14 @@ page{
     border-radius: 10%;
   }
   
+  .fixedtop{
+    position: fixed;
+    padding-top: 30px;
+    top: 0px;
+    background-color: white;
+    width: px(375);
+    z-index: 100;
+  }
   .fixedbottom{
     position: fixed;
     bottom: 0px;
@@ -277,4 +285,8 @@ page{
 
   .content-ios,.content-md{
       background: #fcfcfc;
+  }
+
+  .htmlcontent div,a,section{
+    font-size: 14px;
   }
