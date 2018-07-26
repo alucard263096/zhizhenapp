@@ -1,17 +1,40 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <div *ngIf='courselist.length>0' class="bgcover"  
+      [style.background-image]="courselist.length>0?'url('+uploadpath+'course/'+courselist[current].cover+')':'gray'"
+    >
+  </div>
+
+  <div *ngIf='current+2<courselist.length-1' class="third">
+      <img src="{{uploadpath}}course/{{courselist[current+2].cover}}" />
+  </div>
+  <div *ngIf='current+1<courselist.length-1' class="second">
+      <div>
+          <img src="{{uploadpath}}course/{{courselist[current+1].cover}}" />
+      </div>
+  </div>
+  <div *ngIf='current<courselist.length-1' class="first" (swipe)='swipe()'>
+        <div>
+            <img src="{{uploadpath}}course/{{courselist[current].cover}}" />
+        </div>
+        <div class="h4 padding-20 text-center margin-top">
+            {{courselist[current].name}}
+        </div>
+        <div class="h5 txt-gray padding-20 margin-top-5 firstsummary" >
+            {{courselist[current].summary}}
+        </div>
+        <div class="text-center margin-top">
+            <button ion-button color="danger" (click)="openCourse(courselist[current].id)">立即参与</button>
+        </div>
+    </div>
+
+  <div *ngIf='current>0&&current-1<courselist.length-1&&showmiss' class='missing' >
+      <div>
+          <img src="{{uploadpath}}course/{{courselist[current-1].cover}}" />
+      </div>
+  </div>
+    <div class="pagenumber  flex-row flex-center">
+        <div class="flex-1 h3 text-right">{{current+1}}</div>
+        <div class="flex-1">/{{courselist.length}}</div>
+    </div>
 </ion-content>

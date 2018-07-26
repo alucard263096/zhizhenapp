@@ -1,3 +1,90 @@
 page-contact {
+    .bgcover{
+        width: 100vw;
+        height: 100%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        filter: blur(50px);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+    }
+    .first{
+        background-color:white;
+        width: 80vw;
+        height: 120vw;
+        position: fixed;
+        top: 60px;
+        left: 10vw;
+        border-radius: 10px;
+    }
+    img{
 
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .first img{
+        width: 80vw;
+        height: 50vw;
+    }
+    .firstsummary{
+        padding-top: 0px;
+        height: px(38);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;  //这里是在第二行有省略号
+        overflow: hidden;
+    }
+    .second{
+        background-color:white;
+        width: 76vw;
+        height: 120vw;
+        position: fixed;
+        top: 50px;
+        left: 12vw;
+        border-radius: 10px;
+    }
+    .third{
+        background-color:white;
+        width: 72vw;
+        height: 120vw;
+        position: fixed;
+        top: 45px;
+        left: 14vw;
+        border-radius: 10px;
+    }
+    .pagenumber{
+
+        position: fixed;
+        top: calc( 70px + 120vw );
+        left: 0px;
+        width: 100vw;
+    }
+    .missing{
+        animation-iteration-count:30;
+        -webkit-animation-iteration-count:30;
+        animation:missingant 1s infinite;
+-webkit-animation:missingant 1s infinite;
+    }
+    @keyframes missingant{
+        from {
+            background: white;
+            width: 80vw;
+        height: 120vw;
+        position: fixed;
+        top: 60px;
+        left: 10vw;
+        border-radius: 10px;
+        }
+        to {
+            background: white;
+            width: 1vw;
+            height: 1vw;
+            position: fixed;
+            top: calc( 70px + 140vw );
+            left: 0vw;
+            border-radius: 10px;
+            display: none;
+        }
+    }
 }
