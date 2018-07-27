@@ -22,7 +22,6 @@ import { ViewChild } from '@angular/core';
 })
 export class CoursePage extends AppBase {
   @ViewChild(Content) content: Content;
-  @ViewChild("audio") audio: AudioContext;
 
   playstatus=0;
   id=0;

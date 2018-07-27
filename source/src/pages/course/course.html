@@ -21,7 +21,6 @@
           <ion-icon name="arrow-back" class="h4 txt-white" ></ion-icon>
         </div>
         <div class="nowrap flex-1 h5">
-            
         </div>
   </div>
   <div  *ngIf="info.coursetype=='V'">
@@ -36,9 +35,6 @@
       <div class="h6 txt-gray margin-right-10">{{info.refsource}}</div>
       <div class="h6 txt-gray">{{info.cat_id_name}}</div>
       <div class="flex-1 h6 txt-gray text-right">{{info.viewcount}}阅读</div>
-    </div>
-    <div class="margin-top-10" *ngIf="info.coursetype=='W'">
-      <div class="htmlcontent" [innerHTML]='info.wenzhang'></div>
     </div>
     <div class="margin-top-10" *ngIf="info.coursetype=='W'">
       <div class="htmlcontent" [innerHTML]='info.wenzhang'></div>

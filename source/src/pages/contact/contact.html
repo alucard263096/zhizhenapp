@@ -6,14 +6,34 @@
   </div>
 
   <div *ngIf='current+2<courselist.length-1' class="third">
-      <img src="{{uploadpath}}course/{{courselist[current+2].cover}}" />
+      <div>
+          <img src="{{uploadpath}}course/{{courselist[current+2].cover}}" />
+      </div>
+      <div class="h4 padding-20 text-center margin-top">
+          {{courselist[current+2].name}}
+      </div>
+      <div class="h5 txt-gray padding-20 margin-top-5 firstsummary" >
+          {{courselist[current+2].summary}}
+      </div>
+      <div class="text-center margin-top">
+          <button ion-button color="danger" (click)="openCourse(courselist[current+1].id)">立即参与</button>
+      </div>
   </div>
   <div *ngIf='current+1<courselist.length-1' class="second">
       <div>
           <img src="{{uploadpath}}course/{{courselist[current+1].cover}}" />
       </div>
+      <div class="h4 padding-20 text-center margin-top">
+          {{courselist[current+1].name}}
+      </div>
+      <div class="h5 txt-gray padding-20 margin-top-5 firstsummary" >
+          {{courselist[current+1].summary}}
+      </div>
+      <div class="text-center margin-top">
+          <button ion-button color="danger" (click)="openCourse(courselist[current+1].id)">立即参与</button>
+      </div>
   </div>
-  <div *ngIf='current<courselist.length-1' class="first" (swipe)='swipe()'>
+  <div *ngIf='current<courselist.length-1' class="first" [class.unmissing]="unshowmiss" (swipe)='swipe($event)'>
         <div>
             <img src="{{uploadpath}}course/{{courselist[current].cover}}" />
         </div>
@@ -32,9 +52,18 @@
       <div>
           <img src="{{uploadpath}}course/{{courselist[current-1].cover}}" />
       </div>
+      <div class="h4 padding-20 text-center margin-top">
+          {{courselist[current-1].name}}
+      </div>
+      <div class="h5 txt-gray padding-20 margin-top-5 firstsummary" >
+          {{courselist[current-1].summary}}
+      </div>
+      <div class="text-center margin-top">
+          <button ion-button color="danger" (click)="openCourse(courselist[current-1].id)">立即参与</button>
+      </div>
   </div>
     <div class="pagenumber  flex-row flex-center">
-        <div class="flex-1 h3 text-right">{{current+1}}</div>
-        <div class="flex-1">/{{courselist.length}}</div>
+        <div class="flex-1 h3 text-right txt-white">{{current+1}}</div>
+        <div class="flex-1 txt-white">/{{courselist.length}}</div>
     </div>
 </ion-content>
