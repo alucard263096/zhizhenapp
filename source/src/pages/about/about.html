@@ -1,13 +1,9 @@
 <ion-content>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-          pullingIcon="arrow-dropdown"
-          pullingText="下拉加载最新信息"
-          refreshingSpinner="circles"
-          refreshingText="...">
-        </ion-refresher-content>
-      </ion-refresher>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉加载最新信息" refreshingSpinner="circles" refreshingText="...">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <div class="padding-20 white-block" style="padding-top: 30px;">
     <div class="margin-top-10 flex-row flex-center margin-left-10 margin-right-10">
@@ -37,36 +33,92 @@
     </ion-scroll>
   </div>
   <div class="white-block">
-    <ion-slides loop="false" (ionSlideDidChange)="slideChanged(e)"  >
+    <ion-slides loop="false" (ionSlideDidChange)="slideChanged(e)">
       <ion-slide *ngFor="let catitem of catlist;" class="bodyslider">
-        
+
         <ion-scroll scrollY="true" style="height:100%;">
           <div class="white-block margin-top-5">
-            <ion-scroll class="greatescroll" scrollX="true">
-              <div class="flex-row flex-nowrap">
-                <div class="greatecourse-item margin-top-10" *ngFor="let item of catitem.recommcourse;let i = index"  (click)="openCourse(item.id)">
-                  <div>
-                    <img src="{{uploadpath}}course/{{item.cover}}" />
-                  </div>
-                  <div class="margin-top-5 h5 title">{{item.name}}</div>
+            <div *ngFor="let item of catitem.recommcourse;" class="padding-20 border-bottom" (click)="openCourse(item.id)">
+              <div class="coursttitle h5">{{item.name}}</div>
+              <div class="flex-row" *ngIf="item.recommpic_1!=''||item.recommpic_2!=''||item.recommpic_3!=''">
+                <div>
+                  <img class="recommpic" src="{{uploadpath}}course/{{item.recommpic_1}}" />
+                </div>
+                <div class="flex-1 text-center">
+                  <img class="recommpic" src="{{uploadpath}}course/{{item.recommpic_2}}" />
+                </div>
+                <div>
+                  <img class="recommpic" src="{{uploadpath}}course/{{item.recommpic_3}}" />
                 </div>
               </div>
-            </ion-scroll>
+              <div class="flex-row flex-bottom margin-top-10">
+                <div class="margin-right-10 txt-gray h6">{{item.refsource}}</div>
+                <div class="margin-right-10 txt-gray h6">{{item.viewcount}}阅读</div>
+              </div>
+            </div>
           </div>
-          <div class="margin-top-5" >
-            <div *ngFor="let item of catitem.courselist;" class="padding-20 flex-row flex-center border-bottom"  (click)="openCourse(item.id)">
+          <div style="height: 3px;background-color:rgba(221, 221, 221, 0.5);"></div>
+          <div *ngFor="let item of catitem.hotcourse;" class="padding-20 flex-row flex-center border-bottom" (click)="openCourse(item.id)">
+            <div class="flex-1 margin-right-10">
+              <div class="coursttitle h5">{{item.name}}</div>
+              <div class="flex-row margin-top-10 flex-bottom">
+                <div class="flex-1 h6 txt-gray">{{item.refsource}}</div>
+                <div class="flex-1 h6 txt-gray text-right">{{item.viewcount}}阅读</div>
+              </div>
+            </div>
+            <div>
+              <img class="coursecover" src="{{uploadpath}}course/{{item.cover}}" />
+            </div>
+          </div>
+
+
+          <div style="height: 3px;background-color:rgba(221, 221, 221, 0.5);"></div>
+          <div *ngFor="let item of catitem.courselist;let idx=index;">
+            <div *ngIf='item.coursetype=="W"' class="padding-20 flex-row flex-center border-bottom" (click)="openCourse(item.id)">
               <div class="flex-1 margin-right-10">
                 <div class="coursttitle h5">{{item.name}}</div>
                 <div class="flex-row margin-top-10 flex-bottom">
-                  <div class="flex-1 h6 txt-gray" >{{item.refsource}}</div>
-                  <div class="flex-1 h6 txt-gray text-right" >{{item.viewcount}}阅读</div>
+                  <div class="flex-1 h6 txt-gray">{{item.refsource}}</div>
+                  <div class="flex-1 h6 txt-gray text-right">{{item.viewcount}}阅读</div>
                 </div>
               </div>
               <div>
                 <img class="coursecover" src="{{uploadpath}}course/{{item.cover}}" />
               </div>
             </div>
+            <div *ngIf='item.coursetype=="A"' class="padding-20 flex-row flex-center border-bottom" (click)="openCourse(item.id)">
+              <div class="margin-right-10">
+                <img class="coursecover" src="{{uploadpath}}course/{{item.cover}}" />
+              </div>
+              <div class="flex-1 ">
+                <div class="coursttitle h5">{{item.name}}</div>
+                <div class="flex-row margin-top-10 flex-bottom">
+                  <div class="flex-1 h6 txt-orange">{{item.price==0?"免费":"¥"+item.price}}</div>
+                  <div class="flex-1 h6 txt-gray text-right">{{item.viewcount}}阅读</div>
+                </div>
+              </div>
+              <div class="margin-left-10">
+                <div>
+                    <img class="playicon" src="{{uploadpath}}resource/play.png" />
+                </div>
+                <div class="txt-orange h6 margin-top-5">试听</div>
+              </div>
+            </div>
+            <div *ngIf='item.coursetype=="V"' class="padding-20 border-bottom" (click)="openCourse(item.id)">
+              <div class="">
+                <div class="videopricec  h6">{{item.price==0?"免费":"¥"+item.price}}</div>
+                <img class="bigcoursecover" src="{{uploadpath}}course/{{item.cover}}" />
+                <div class="videoplaytime  h6">{{item.playtime}}</div>
+              </div>
+              <div class="coursttitle h4 margin-top-5">{{item.name}}</div>
+              <div class="flex-bottom flex-row">
+                <div class="h6 txt-gray margin-right-10">{{item.refsource}}</div>
+                <div class="h6 txt-gray">{{item.viewcount}}观看</div>
+              </div>
+            </div>
           </div>
+
+
         </ion-scroll>
       </ion-slide>
     </ion-slides>

@@ -41,6 +41,7 @@ export class CoursePage extends AppBase {
   onMyShow(){
     this.courseApi.info({id:this.id}).then((info)=>{
 
+      info=this.coursedecode(info);
       //alert(JSON.stringify( info.relacourses));
       info.wenzhang=this.util.HtmlDecode(info.wenzhang);
       this.info=info;

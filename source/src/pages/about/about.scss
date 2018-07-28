@@ -19,7 +19,7 @@ page-about {
     }
 
     .bodyslider{
-        height: calc( 100vh - 185px );
+        height: calc( 100vh - 180px );
     }
     .bodyslider .swiper-slide{
         align-items: unset;
@@ -65,5 +65,43 @@ page-about {
         height: px(68);
         width:px(110);
         border-radius: 5px;
+    }
+    .recommpic{
+        width: px(107);
+        height: px(70);
+        border-radius: 5px;
+    }
+    .playicon{
+        width: px(24);
+        height: px(24);
+    }
+    .bigcoursecover{
+
+        height: px(180);
+        width:100%;
+        border-radius: 5px;
+    }
+    .videopricec{
+        position: absolute;
+        right: px(10);
+        padding:4px;
+        padding-left:10px;
+        padding-right:10px;
+        background-color:#FF9800 ;
+        margin-top: 10px;
+        border-radius: 2px;
+        color:white;
+    }
+    .videoplaytime{
+
+        position: absolute;
+        right: px(20);
+        border:1px solid white;
+        margin-top: -40px;
+        border-radius: 2px;
+        color:white;
+        padding:4px;
+        padding-left:10px;
+        padding-right:10px;
     }
 }

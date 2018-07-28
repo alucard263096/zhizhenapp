@@ -62,6 +62,7 @@ export class AboutPage extends AppBase {
               this.catlist[i].active = "Y";
               this.catlist[i].courselist=undefined;
               this.catlist[i].recommcourse=undefined;
+              this.catlist[i].hotcourse=undefined;
               this.catclick(i);
               
               AppBase.TabChangeParamCache=null;
@@ -97,13 +98,26 @@ export class AboutPage extends AppBase {
             cat_id: cat_id,
             orderby: " r_main.published_date desc "
           }).then((courselist) => {
+            courselist=this.courselistdecode(courselist);
             this.catlist[i].courselist = courselist;
           });
           if (this.catlist[i].recommcourse == undefined) {
             this.courseApi.list({
               cat_id: cat_id, iscatrecomm: "Y"
+              ,orderby:" r_main.seq limit 0,2"
             }).then((recommcourse) => {
+              recommcourse=this.courselistdecode(recommcourse);
               this.catlist[i].recommcourse = recommcourse;
+            });
+          }
+          if (this.catlist[i].hotcourse == undefined) {
+            this.courseApi.list({
+              cat_id: cat_id
+              ,orderby:" r_main.viewcount desc limit 0,3"
+            }).then((hotcourse) => {
+              console.log("aa");
+              hotcourse=this.courselistdecode(hotcourse);
+              this.catlist[i].hotcourse = hotcourse;
             });
           }
           break;
@@ -119,6 +133,7 @@ export class AboutPage extends AppBase {
       if (this.catlist[i].active == "Y") {
         this.catlist[i].courselist=undefined;
         this.catlist[i].recommcourse=undefined;
+        this.catlist[i].hotcourse=undefined;
         this.loadCatCourseList(this.catlist[i].id);
         this.slides.slideTo(i);
         ref.complete();

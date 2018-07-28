@@ -9,6 +9,9 @@ export class AppUtil {
     public static osVersion = '';
 	
     public static HtmlDecode(str) {
+        if(str==null){
+            return "";
+        }
         var s = "";
         if (str.length == 0) return "";
         s = str.replace(/&amp;/g, "&");

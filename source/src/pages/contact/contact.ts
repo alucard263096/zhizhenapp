@@ -34,6 +34,7 @@ export class ContactPage extends AppBase {
   onMyShow() {
     this.courseApi.list({ isfind: "Y" }).then((courselist) => {
       //alert(JSON.stringify(courselist));
+      courselist=this.courselistdecode(courselist);
       this.courselist = courselist;
     });
   }

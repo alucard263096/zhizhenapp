@@ -77,4 +77,20 @@ export class AppBase{
         
         this.modal("CoursePage",{id:id});
     }
+    decode(val){
+        return AppUtil.HtmlDecode(val);
+    }
+    courselistdecode(list){
+        if(list!=null){
+            for(var i=0;i<list.length;i++){
+                list[i]=this.coursedecode(list[i]);
+            }
+        }
+        return list;
+    }
+    coursedecode(item){
+        item.name=this.decode(item.name);
+        item.summary=this.decode(item.summary);
+        return item;
+    }
 }

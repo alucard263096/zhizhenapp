@@ -25,7 +25,7 @@
   </div>
   <div  *ngIf="info.coursetype=='V'">
     <video class="video" 
-    x5-video-player-type="h5" x5-video-player-fullscreen="true" playsinline webkit-playsinline 
+      webkit-playsinline 
       (pause)="playstatus=0" (playing)="playstatus=1"
      autoplay src="{{uploadpath}}course/{{info.video}}" 
      controls="controls" preload="metadata" 

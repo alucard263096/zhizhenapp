@@ -52,21 +52,25 @@ export class HomePage extends AppBase {
     });
 
     this.categoryApi.list({}).then((catlist)=>{
+      catlist=this.courselistdecode(catlist);
       this.catlist=catlist;
     });
     this.courseApi.list({isrecomm:"Y"}).then((recommcourselist)=>{
+      recommcourselist=this.courselistdecode(recommcourselist);
       this.recommcourselist=recommcourselist;
     });
     this.courseApi.list({isgreat:"Y"}).then((greatecourselist)=>{
+      greatecourselist=this.courselistdecode(greatecourselist);
       this.greatecourselist=greatecourselist;
     });
     this.courseApi.list({ishot:"Y"}).then((hotcourselist)=>{
+      hotcourselist=this.courselistdecode(hotcourselist);
       this.hotcourselist=hotcourselist;
     });
     
   }
   onMyShow(){
-    this.openCourse(26);
+    //this.changeTab(1,{});
   }
   onPullRefresh(){
     this.onMyLoad();
