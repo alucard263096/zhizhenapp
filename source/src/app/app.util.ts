@@ -1,6 +1,12 @@
 ﻿import {ApiConfig} from './api.config';
+import { Network } from '@ionic-native/network';
+import {  AlertController, ToastController } from 'ionic-angular';
 
 export class AppUtil {
+    public static isMicroMessager: boolean = false; //是否是在微信内置浏览器打开.
+    public static isLessThenAndroid5: boolean = false; //<= android 4.4
+    public static isIOS: boolean = false; //是否是在Iphone设备, 不论是微信打开,还是APP.
+    public static osVersion = '';
 	
     public static HtmlDecode(str) {
         var s = "";
@@ -52,4 +58,28 @@ export class AppUtil {
     }
 
     
+
+    public static MiddleToast(toastCtrl: ToastController, msg) {
+        let toast = toastCtrl.create({
+            message: msg,
+            duration: 2000,
+            position: 'middle'
+        });
+        toast.present();
+    }
+    public static IsWifi(network: Network) {
+        var isWifi = true;
+        try {
+            //网页版怎么检测?
+
+            if (!network.type || network.type == 'wifi' || network.type == 'none') {
+                isWifi = true;
+            }
+            else {
+                isWifi = false;
+            }
+        }
+        catch (e) { }
+        return isWifi;
+    }
 }

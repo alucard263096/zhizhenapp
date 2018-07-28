@@ -16,7 +16,7 @@
             
         </div>
   </div>
-  <div class="padding-20 flex-row flex-center fixedtop" style="background-color:transparent" *ngIf="info.coursetype=='V'">
+  <div class="padding-20 flex-row flex-center fixedtop margin-top" style="background-color:transparent" *ngIf="info.coursetype=='V'">
         <div (click)="close()">
           <ion-icon name="arrow-back" class="h4 txt-white" ></ion-icon>
         </div>
@@ -24,7 +24,14 @@
         </div>
   </div>
   <div  *ngIf="info.coursetype=='V'">
-      <video class="video" autoplay (pause)="playstatus=0" (playing)="playstatus=1" #audio src="{{uploadpath}}course/{{info.video}}" controls="controls"></video>
+    <video class="video" 
+    x5-video-player-type="h5" x5-video-player-fullscreen="true" playsinline webkit-playsinline 
+      (pause)="playstatus=0" (playing)="playstatus=1"
+     autoplay src="{{uploadpath}}course/{{info.video}}" 
+     controls="controls" preload="metadata" 
+     poster="{{uploadpath}}course/{{info.videocover}}"></video>
+
+     
   </div>
   <div padding >
     <div style="height:50px;"  *ngIf="info.coursetype!='V'"></div>

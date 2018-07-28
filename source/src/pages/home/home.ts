@@ -66,7 +66,7 @@ export class HomePage extends AppBase {
     
   }
   onMyShow(){
-    
+    this.openCourse(26);
   }
   onPullRefresh(){
     this.onMyLoad();
